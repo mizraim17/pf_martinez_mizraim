@@ -1,0 +1,68 @@
+<div class="div">
+
+  <h1>Iniciar sesión</h1>
+
+
+
+  <div class="col-12 col-lg-3 col-md-1"></div>
+
+  <div class="col-12  col-lg-6  col-md-10">
+
+    <form [formGroup]="formulario" (ngSubmit)="login()">
+
+      <div class="row">
+
+        <p>
+          usuario {{formulario.controls['usuario'].valid |json }}
+        </p>
+        <div class="form-group col-md-12">
+
+
+          <mat-form-field class="example-full-width">
+            <mat-label>Email</mat-label>
+
+            <input type="email" matInput formControlName="usuario" placeholder=" ">
+            <mat-error *ngIf="formulario.controls['usuario'].errors?.['required']">
+              El correo es <strong>requerido</strong>
+            </mat-error>
+            <mat-error
+              *ngIf="formulario.controls['usuario'].invalid && formulario.controls['usuario'].hasError('required')">
+              Correo Invalido
+            </mat-error>
+
+          </mat-form-field>
+        </div>
+
+        <div class="form-group col-md-12  ">
+
+          <mat-form-field class="example-full-width">
+            <mat-label>Contraseña</mat-label>
+            <input type="password" matInput formControlName="contrasena" placeholder=" ">
+
+            <mat-error *ngIf="formulario.controls['contrasena'].hasError('required')">
+              La contraseña es <strong>requerida</strong>
+            </mat-error>
+
+            <mat-error
+              *ngIf="formulario.controls['contrasena'].invalid && !formulario.controls['contrasena'].hasError('required')">
+              La contraseña debe ser <strong> de al menos 5 caracteres</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="col-md-12 mt-2">
+          <mat-slide-toggle formControlName="esAdmin">Es admin</mat-slide-toggle>
+        </div>
+        <div class="col-md-12 mt-4">
+          <button type="submit" [disabled]="formulario.invalid" mat-raised-button color="primary">Ingresar</button>
+        </div>
+      </div>
+    </form>
+  </div>
+
+
+
+
+  <div class="col-12 col-lg-3 col-md-1"></div>
+
+</div>

@@ -1,0 +1,122 @@
+<div mat-dialog-title>
+  Editar estudiante
+</div>
+
+<div mat-dialog-content>
+
+  <form [formGroup]="formulario " (ngSubmit)="editEstudiante(formulario)" class=" g-3 mt-5">
+
+    <div class="row">
+
+      <div class="form-group col-md-6 col-lg-6 col-12 col-sm-6">
+        <label for="nombre" class="form-label">Nombre</label>
+        <input type="text" class="form-control" id="nombre" formControlName="nombre">
+        <div class="valido" *ngIf="formulario.controls['nombre'].touched && formulario.controls['nombre'].valid ">
+          Es Válido
+        </div>
+        <div class="invalido"
+          *ngIf="formulario.controls['nombre'].errors?.['required'] && formulario.controls['nombre'].dirty ">
+          Está Vacío
+        </div>
+      </div>
+
+      <div class="form-group col-md-6 col-lg-6 col-12 col-sm-6">
+        <label for="apellido" class="form-label">Apellido</label>
+        <input formControlName="apellido" type="text" class="form-control" id="apellido">
+        <div class="valido" *ngIf="  formulario.controls['apellido'].touched && formulario.controls['apellido'].valid ">
+          Es Válido
+        </div>
+        <div class="invalido"
+          *ngIf="formulario.controls['apellido'].errors?.['required'] && formulario.controls['apellido'].dirty ">
+          Está Vacío
+        </div>
+      </div>
+
+      <div class="form-group col-md-6 col-lg-6 col-12 col-sm-6">
+        <label for="curso" class="form-label">Curso</label>
+        <input formControlName="curso" type="text" class="form-control" id="curso">
+        <div class="valido" *ngIf=" formulario.controls['curso'].touched && formulario.controls['curso'].valid ">
+          Es Válido
+        </div>
+        <div class="invalido"
+          *ngIf="formulario.controls['curso'].errors?.['required'] && formulario.controls['curso'].dirty ">
+          Está Vacío
+        </div>
+
+      </div>
+
+      <div class="form-group col-md-6 col-lg-6 col-12 col-sm-6">
+
+        <label for="correo" class="form-label">Correo</label>
+        <input formControlName="correo" type="text" class="form-control" id="correo">
+        <div class="valido" *ngIf="formulario.controls['correo'].touched && formulario.controls['correo'].valid ">
+          Es Válido
+        </div>
+        <div class="invalido"
+          *ngIf="formulario.controls['correo'].errors?.['required'] && formulario.controls['correo'].dirty ">
+          Está Vacío
+        </div>
+      </div>
+
+      <div class="form-group col-md-6 col-lg-6 col-12 col-sm-6">
+        <label for="calificacion" class="form-label">calificacion</label>
+        <input formControlName="calificacion" type="text" class="form-control" id="calificacion">
+        <div class="valido"
+          *ngIf=" formulario.controls['calificacion'].touched && formulario.controls['calificacion'].valid ">
+          Es Válido
+        </div>
+        <div class="invalido"
+          *ngIf="formulario.controls['calificacion'].errors?.['required'] && formulario.controls['calificacion'].dirty ">
+          Está Vacío
+        </div>
+
+      </div>
+
+      <div class="form-group col-md-6 col-lg-6 col-12 col-sm-6">
+        <label for="fechaNacimiento" class="form-label">Fecha de nacimiento</label>
+        <input formControlName="fechaNacimiento" type="date" class="form-control" id="fechaNacimiento">
+        <div class="valido"
+          *ngIf=" formulario.controls['fechaNacimiento'].touched && formulario.controls['fechaNacimiento'].valid ">
+          Es Válido
+        </div>
+        <div class="invalido"
+          *ngIf="formulario.controls['fechaNacimiento'].errors?.['required'] && formulario.controls['fechaNacimiento'].dirty ">
+          Está Vacío
+        </div>
+      </div>
+
+      <div class="form-group col-md-6 col-lg-6 col-12 col-sm-6">
+        <label for="foto" class="form-label">Foto</label>
+        <input formControlName="foto" type="text" class="form-control" id="foto">
+        <div class="valido" *ngIf=" formulario.controls['foto'].touched && formulario.controls['foto'].valid ">
+          Es Válido
+        </div>
+        <div class="invalido"
+          *ngIf="formulario.controls['foto'].errors?.['required'] && formulario.controls['sexo'].dirty ">
+          Está Vacío
+        </div>
+      </div>
+
+      <div class="col-12">
+        <div class="form-check">
+          <input formControlName="becado" class="form-check-input" type="checkbox" id="gridCheck">
+          <label class="form-check-label" for="gridCheck">
+            Beca
+          </label>
+        </div>
+      </div>
+
+      <div class="col-12">
+        <button mat-dialog-close="" type="submit" class="btn btn-primary">Registrar</button>
+      </div>
+    </div>
+  </form>
+
+
+</div>
+
+<div mat-dialog-actions>
+
+  <button mat-button mat-dialog-close>Cerrar</button>
+
+</div>

@@ -1,0 +1,44 @@
+<div class="container">
+
+  <div class="row mt-4">
+
+    <h1>Lista de Maestros</h1>
+
+    <mat-form-field class="example-full-width">
+      <mat-label>Filtrar</mat-label>
+      <input type="text" matInput (keyup)="filtrar($event)">
+    </mat-form-field>
+  </div>
+
+
+  <div class="row">
+    <div class="col-12 col-sm-6 col-md-4 mt-4" *ngFor="let i=index,let estudiante of estudiantes$ | async">
+      <mat-card class="card-1 example-header-image">
+        <mat-card-header>
+          <mat-card-title>{{ estudiante | concatNombreApellido }}</mat-card-title>
+          <mat-card-subtitle>{{ estudiante.curso }}</mat-card-subtitle>
+        </mat-card-header>
+        <img class="card-imagen" mat-card-image src="{{estudiante.foto}}" alt="">
+        <mat-card-content>
+          <p class=" pt-3"> {{ estudiante.fechaNacimiento|date }}</p>
+          <p class="text-truncate">{{ estudiante.correo }}</p>
+        </mat-card-content>
+        <mat-card-actions align="end">
+          <ng-container *ngIf="sesion$|async as sesion">
+            <button *ngIf="sesion.usuarioActivo?.esAdmin" mat-raised-button color="primary"
+              (click)="editarDatos(estudiante)">
+              Editar
+            </button>
+            <button *ngIf="sesion.usuarioActivo?.esAdmin" mat-stroked-button color="warn"
+              (click)="eliminarDatos(estudiante.id)">
+              Eliminar
+            </button>
+          </ng-container>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+  </div>
+
+
+
+</div>
