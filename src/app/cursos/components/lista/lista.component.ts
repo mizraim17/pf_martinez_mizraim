@@ -42,13 +42,6 @@ export class ListaComponent {
   }
 
   ngOnInit() {
-    this.store.dispatch(cargarEstudiantes());
-    this.estudianteService
-      .obtenerEstudiantesObservable()
-      .subscribe((estudiantes: Estudiante[]) => {
-        this.store.dispatch(estudiantesCargados({ estudiantes: estudiantes }));
-      });
-
     this.estudiantes$ = this.store.select(selectorEstudiantesCargados);
 
     this.sesion$ = this.sesion.obtenerSesison();

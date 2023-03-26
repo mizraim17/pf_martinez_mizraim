@@ -7,10 +7,12 @@ import { AgregarEstudianteComponent } from './components/agregar-estudiante/agre
 import { TablaComponent } from './components/tabla/tabla.component';
 import { SesionGuard } from '../core/guards/sesion.guard';
 import { AdminGuard } from '../core/guards/admin.guard';
+import { CargaEstudiantesComponent } from './components/carga-estudiantes/carga-estudiantes.component';
 
 const routes: Routes = [
   {
     path: '',
+    component: CargaEstudiantesComponent,
     canActivateChild: [SesionGuard],
     children: [
       { path: 'list', component: ListaComponent },

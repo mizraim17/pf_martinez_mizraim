@@ -15,6 +15,7 @@ import { CursosRoutingModule } from './cursos-routing.module';
 import { CursosService } from './services/cursos.service';
 import { SharedModule } from '../shared/shared.module';
 import { FontSizeDirective } from '../directives/font-size.directive';
+import { CargaEstudiantesComponent } from './components/carga-estudiantes/carga-estudiantes.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { FontSizeDirective } from '../directives/font-size.directive';
     ConcatNombreApellidoPipe,
     ValidaCalificacionPipe,
     FontSizeDirective,
+    CargaEstudiantesComponent,
   ],
   imports: [
     CommonModule,
