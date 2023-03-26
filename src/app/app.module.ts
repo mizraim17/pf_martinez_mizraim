@@ -9,6 +9,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SharedModule } from './shared/shared.module';
 import { CoreModule } from './core/core.module';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { StoreModule } from '@ngrx/store';
+import { ROOT_REDUCERS } from './core/state/app.state';
 
 @NgModule({
   declarations: [AppComponent, NavbarComponent, ContentComponent],
@@ -19,6 +21,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     SharedModule,
     CoreModule,
     MatSnackBarModule,
+    StoreModule.forRoot(ROOT_REDUCERS),
   ],
   providers: [],
   bootstrap: [AppComponent],

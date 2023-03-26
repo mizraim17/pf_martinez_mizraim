@@ -7,6 +7,16 @@ import { MatDialog } from '@angular/material/dialog';
 import { CursosService } from '../../services/cursos.service';
 import { Sesion } from 'src/app/models/sesion';
 import { SesionService } from '../../../core/services/sesion.service';
+import { Store } from '@ngrx/store';
+import { AppState } from 'src/app/core/state/app.state';
+import {
+  selectorCargandoEstudiantes,
+  selectorEstudiantesCargados,
+} from '../../../core/state/cursos.selectors';
+import {
+  cargarEstudiantes,
+  estudiantesCargados,
+} from '../../../core/state/cursos.actions';
 
 @Component({
   selector: 'app-lista',
@@ -22,7 +32,8 @@ export class ListaComponent {
   constructor(
     private dialog: MatDialog,
     private estudianteService: CursosService,
-    private sesion: SesionService
+    private sesion: SesionService,
+    private store: Store<AppState>
   ) {}
 
   filtrar(event: Event) {
@@ -31,7 +42,15 @@ export class ListaComponent {
   }
 
   ngOnInit() {
-    this.estudiantes$ = this.estudianteService.obtenerEstudiantesObservable();
+    this.store.dispatch(cargarEstudiantes());
+    this.estudianteService
+      .obtenerEstudiantesObservable()
+      .subscribe((estudiantes: Estudiante[]) => {
+        this.store.dispatch(estudiantesCargados({ estudiantes: estudiantes }));
+      });
+
+    this.estudiantes$ = this.store.select(selectorEstudiantesCargados);
+
     this.sesion$ = this.sesion.obtenerSesison();
   }
 
