@@ -17,6 +17,7 @@ import {
   cargarEstudianteState,
   estudianteCargado,
 } from '../../estudiante-state.actions';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-lista',
@@ -31,6 +32,7 @@ export class ListaComponent {
   cargando$!: Observable<boolean>;
 
   constructor(
+    public snackBar: MatSnackBar,
     private dialog: MatDialog,
     private estudianteService: CursosService,
     private sesion: SesionService,
@@ -65,7 +67,9 @@ export class ListaComponent {
       })
       .afterClosed()
       .subscribe((estudiante: Estudiante) => {
-        console.log('estudante lista ===>', estudiante);
+        console.log(' estudiante', estudiante);
+
+        alert('Editado');
 
         this.estudiantes$ =
           this.estudianteService.obtenerEstudiantesObservable();
@@ -78,8 +82,7 @@ export class ListaComponent {
       .subscribe((estudiante: Estudiante) => {
         alert(`${estudiante.nombre} eliminado`);
 
-        this.estudiantes$ =
-          this.estudianteService.obtenerEstudiantesObservable();
+        this.estudiantes$ = this.store.select(selectorEstudiantesCargados);
       });
   }
 }

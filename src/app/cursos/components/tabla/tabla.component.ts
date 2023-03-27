@@ -15,8 +15,6 @@ import { AgregarEstudianteComponent } from '../agregar-estudiante/agregar-estudi
 import { Observable, Subscription } from 'rxjs';
 import { CursosService } from '../../services/cursos.service';
 import { Store } from '@ngrx/store';
-import { AppState } from 'src/app/core/state/app.state';
-import { selectorEstudiantesCargados } from 'src/app/core/state/cursos.selectors';
 
 @Component({
   selector: 'app-tabla',
@@ -39,8 +37,7 @@ export class TablaComponent implements OnInit, OnDestroy {
 
   constructor(
     private dialog: MatDialog,
-    private estudianteService: CursosService,
-    private store: Store<AppState>
+    private estudianteService: CursosService
   ) {}
 
   ngOnInit(): void {
