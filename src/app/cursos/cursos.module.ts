@@ -17,6 +17,10 @@ import { SharedModule } from '../shared/shared.module';
 import { FontSizeDirective } from '../directives/font-size.directive';
 import { CargaEstudiantesComponent } from './components/carga-estudiantes/carga-estudiantes.component';
 
+// import { EstudianteStateEffects } from './estudiante-state.effects';
+import { StoreModule } from '@ngrx/store';
+import { estudianteStateFeatureKey, reducer } from './estudiante-state.reducer';
+
 @NgModule({
   declarations: [
     AgregarEstudianteComponent,
@@ -34,6 +38,7 @@ import { CargaEstudiantesComponent } from './components/carga-estudiantes/carga-
     ReactiveFormsModule,
     SharedModule,
     CursosRoutingModule,
+    StoreModule.forFeature(estudianteStateFeatureKey, reducer),
   ],
   exports: [
     AgregarEstudianteComponent,

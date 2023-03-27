@@ -14,6 +14,9 @@ import { EditarEstudianteComponent } from '../editar-estudiante/editar-estudiant
 import { AgregarEstudianteComponent } from '../agregar-estudiante/agregar-estudiante.component';
 import { Observable, Subscription } from 'rxjs';
 import { CursosService } from '../../services/cursos.service';
+import { Store } from '@ngrx/store';
+import { AppState } from 'src/app/core/state/app.state';
+import { selectorEstudiantesCargados } from 'src/app/core/state/cursos.selectors';
 
 @Component({
   selector: 'app-tabla',
@@ -36,20 +39,28 @@ export class TablaComponent implements OnInit, OnDestroy {
 
   constructor(
     private dialog: MatDialog,
-    private estudianteService: CursosService
+    private estudianteService: CursosService,
+    private store: Store<AppState>
   ) {}
 
   ngOnInit(): void {
     this.dataSource = new MatTableDataSource<Estudiante>();
+
     this.suscripcion = this.estudianteService
       .obtenerEstudiantesObservable()
       .subscribe((estudiantes: Estudiante[]) => {
         this.dataSource.data = estudiantes;
       });
+
+    // let estudiantes$ = this.store
+    //   .select(selectorEstudiantesCargados)
+    //   .subscribe((estudiantes: Estudiante[]) => {
+    //     this.dataSource.data = estudiantes;
+    //   });
   }
 
   ngOnDestroy(): void {
-    this.suscripcion.unsubscribe();
+    // this.suscripcion.unsubscribe();
   }
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;

@@ -8,15 +8,15 @@ import { CursosService } from '../../services/cursos.service';
 import { Sesion } from 'src/app/models/sesion';
 import { SesionService } from '../../../core/services/sesion.service';
 import { Store } from '@ngrx/store';
-import { AppState } from 'src/app/core/state/app.state';
+import { EstudianteState } from '../../estudiante-state.reducer';
 import {
-  selectorCargandoEstudiantes,
+  selectCargandoEstudiantes,
   selectorEstudiantesCargados,
-} from '../../../core/state/cursos.selectors';
+} from '../../estudiante-state.selectors';
 import {
-  cargarEstudiantes,
-  estudiantesCargados,
-} from '../../../core/state/cursos.actions';
+  cargarEstudianteState,
+  estudianteCargado,
+} from '../../estudiante-state.actions';
 
 @Component({
   selector: 'app-lista',
@@ -28,12 +28,13 @@ export class ListaComponent {
   estudiantes$!: Observable<Estudiante[]>;
   suscripcion!: Subscription;
   sesion$!: Observable<Sesion>;
+  cargando$!: Observable<boolean>;
 
   constructor(
     private dialog: MatDialog,
     private estudianteService: CursosService,
     private sesion: SesionService,
-    private store: Store<AppState>
+    private store: Store<EstudianteState>
   ) {}
 
   filtrar(event: Event) {
@@ -42,6 +43,15 @@ export class ListaComponent {
   }
 
   ngOnInit() {
+    this.cargando$ = this.store.select(selectCargandoEstudiantes);
+    this.store.dispatch(cargarEstudianteState());
+
+    this.estudianteService
+      .obtenerEstudiantesObservable()
+      .subscribe((estudiantes: Estudiante[]) => {
+        this.store.dispatch(estudianteCargado({ estudiantes: estudiantes }));
+      });
+
     this.estudiantes$ = this.store.select(selectorEstudiantesCargados);
 
     this.sesion$ = this.sesion.obtenerSesison();
@@ -57,7 +67,6 @@ export class ListaComponent {
       .subscribe((estudiante: Estudiante) => {
         console.log('estudante lista ===>', estudiante);
 
-        // alert(`Editado  `);
         this.estudiantes$ =
           this.estudianteService.obtenerEstudiantesObservable();
       });
