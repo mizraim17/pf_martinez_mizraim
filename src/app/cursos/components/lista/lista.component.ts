@@ -46,6 +46,7 @@ export class ListaComponent {
 
   ngOnInit() {
     this.cargando$ = this.store.select(selectCargandoEstudiantes);
+
     this.store.dispatch(cargarEstudianteState());
 
     this.estudianteService
@@ -82,7 +83,8 @@ export class ListaComponent {
       .subscribe((estudiante: Estudiante) => {
         alert(`${estudiante.nombre} eliminado`);
 
-        this.estudiantes$ = this.store.select(selectorEstudiantesCargados);
+        this.estudiantes$ =
+          this.estudianteService.obtenerEstudiantesObservable();
       });
   }
 }
