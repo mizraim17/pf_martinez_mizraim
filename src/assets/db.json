@@ -1,0 +1,14 @@
+{
+  "usuarios":
+ [
+    {   "usuario": "mizraim@gmail.com",
+    "contrasena": "admin123",
+    "esAdmin": true
+    },
+
+    {   "usuario": "estudiante",
+    "contrasena": "user",
+    "esAdmin": false
+    }
+  ]
+}
