@@ -1,13 +1,13 @@
 {
   "usuarios":
  [
-    {   "usuario": "mizraim@gmail.com",
-    "contrasena": "admin123",
+    {   "usuario": "miz@gmail.com",
+    "contrasena": "usuario123",
     "esAdmin": true
     },
 
-    {   "usuario": "estudiante",
-    "contrasena": "user",
+    {   "usuario": "estudiante@gmail.com",
+    "contrasena": "usuario123",
     "esAdmin": false
     }
   ]

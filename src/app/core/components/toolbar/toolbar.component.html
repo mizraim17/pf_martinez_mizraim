@@ -1,7 +1,8 @@
-<ng-container *ngIf="sesion$|async as sesion">
+<!-- <ng-container *ngIf="sesionActiva$|async as sesion"> -->
+<ng-container>
 
 
-  <mat-toolbar color="primary" *ngIf="sesion.sesionActiva">
+  <mat-toolbar color="primary">
     <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
       <mat-icon>menu</mat-icon>
     </button>
@@ -17,13 +18,13 @@
       Lista
     </a>
 
-    <a mat-button *ngIf="sesion.usuarioActivo?.esAdmin">
+    <a mat-button *ngIf="(usuarioActivo$ | async)?.esAdmin">
       <mat-icon>
         supervisor_account
       </mat-icon>
     </a>
 
-    <a mat-button *ngIf="sesion.usuarioActivo?.esAdmin==false">
+    <a mat-button *ngIf="(usuarioActivo$ | async)?.esAdmin==false">
       <mat-icon>
         school
       </mat-icon>

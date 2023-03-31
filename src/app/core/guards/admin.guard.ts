@@ -10,13 +10,16 @@ import { map, Observable } from 'rxjs';
 import { SesionService } from '../services/sesion.service';
 import { Sesion } from '../../models/sesion';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { AuthState } from 'src/app/autenticacion/state/auth.reducer';
+import { Store } from '@ngrx/store';
+import { selectSesionState } from 'src/app/autenticacion/state/auth.selectors';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AdminGuard implements CanActivate {
   constructor(
-    private sesion: SesionService,
+    private authStore: Store<AuthState>,
     private router: Router,
     public snackBar: MatSnackBar
   ) {}
@@ -29,7 +32,7 @@ export class AdminGuard implements CanActivate {
     | Promise<boolean | UrlTree>
     | boolean
     | UrlTree {
-    return this.sesion.obtenerSesison().pipe(
+    return this.authStore.select(selectSesionState).pipe(
       map((sesion: Sesion) => {
         console.log('es sesion.usuarioActivo', sesion.usuarioActivo);
 

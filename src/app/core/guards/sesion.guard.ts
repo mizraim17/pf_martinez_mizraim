@@ -13,12 +13,15 @@ import {
 import { Observable, map } from 'rxjs';
 import { SesionService } from '../services/sesion.service';
 import { Sesion } from '../../models/sesion';
+import { AuthState } from '../../autenticacion/state/auth.reducer';
+import { Store } from '@ngrx/store';
+import { selectSesionState } from 'src/app/autenticacion/state/auth.selectors';
 
 @Injectable({
   providedIn: 'root',
 })
 export class SesionGuard implements CanActivate, CanActivateChild, CanLoad {
-  constructor(private sesion: SesionService, private router: Router) {}
+  constructor(private authStore: Store<AuthState>, private router: Router) {}
 
   canActivate(
     route: ActivatedRouteSnapshot,
@@ -28,7 +31,7 @@ export class SesionGuard implements CanActivate, CanActivateChild, CanLoad {
     | Promise<boolean | UrlTree>
     | boolean
     | UrlTree {
-    return this.sesion.obtenerSesison().pipe(
+    return this.authStore.select(selectSesionState).pipe(
       map((sesion: Sesion) => {
         if (sesion.sesionActiva) {
           return true;
@@ -47,7 +50,7 @@ export class SesionGuard implements CanActivate, CanActivateChild, CanLoad {
     | Promise<boolean | UrlTree>
     | boolean
     | UrlTree {
-    return this.sesion.obtenerSesison().pipe(
+    return this.authStore.select(selectSesionState).pipe(
       map((sesion: Sesion) => {
         if (sesion.sesionActiva) {
           return true;
@@ -66,7 +69,7 @@ export class SesionGuard implements CanActivate, CanActivateChild, CanLoad {
     | Promise<boolean | UrlTree>
     | boolean
     | UrlTree {
-    return this.sesion.obtenerSesison().pipe(
+    return this.authStore.select(selectSesionState).pipe(
       map((sesion: Sesion) => {
         if (sesion.sesionActiva) {
           return true;
