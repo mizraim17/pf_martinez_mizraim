@@ -18,13 +18,15 @@
       Lista
     </a>
 
-    <a mat-button *ngIf="(usuarioActivo$ | async)?.esAdmin">
+    <!-- <a mat-button *ngIf="(usuarioActivo$ | async)?.esAdmin"> -->
+    <a mat-button>
       <mat-icon>
         supervisor_account
       </mat-icon>
     </a>
 
-    <a mat-button *ngIf="(usuarioActivo$ | async)?.esAdmin==false">
+    <!-- <a mat-button *ngIf="(usuarioActivo$ | async)?.esAdmin==false"> -->
+    <a mat-button>
       <mat-icon>
         school
       </mat-icon>

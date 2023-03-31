@@ -34,6 +34,9 @@ export class ToolbarComponent implements OnInit {
     // this.sesion$ = this.sesion.obtenerSesison();
 
     this.sesionActiva$ = this.authStore.select(selectSesionActiva);
+    alert('toolbar');
+    console.log(' this.sesionActiva$', this.sesionActiva$);
+
     this.usuarioActivo$ = this.authStore.select(selectUsuarioActivo);
   }
 

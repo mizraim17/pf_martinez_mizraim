@@ -8,11 +8,14 @@ export interface AuthState {
   sesion: Sesion;
 }
 
+//inicializando
 export const initialState: AuthState = {
   sesion: {
     sesionActiva: false,
   },
 };
+
+///funcion reductora
 
 export const authReducer = createReducer(
   initialState,

@@ -71,7 +71,11 @@ export class LoginComponent implements OnInit {
     this.suscripcion = this.loginService
       .login(usuario)
       .subscribe((sesion: Sesion) => {
-        this.authStore.dispatch(cargarSesion({ sesion: sesion }));
+        this.authStore.dispatch(
+          cargarSesion({
+            sesion: sesion,
+          })
+        );
         this.router.navigate(['home']);
       });
 
