@@ -36,6 +36,8 @@ export class SesionGuard implements CanActivate, CanActivateChild, CanLoad {
         if (sesion.sesionActiva) {
           return true;
         } else {
+          console.log('entro a sesion no activa');
+
           this.router.navigate(['auth/login']);
           return false;
         }

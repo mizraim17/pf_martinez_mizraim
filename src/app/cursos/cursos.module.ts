@@ -19,7 +19,10 @@ import { CargaEstudiantesComponent } from './components/carga-estudiantes/carga-
 
 // import { EstudianteStateEffects } from './estudiante-state.effects';
 import { StoreModule } from '@ngrx/store';
-import { estudianteStateFeatureKey, reducer } from './estudiante-state.reducer';
+import {
+  estudianteStateFeatureKey,
+  reducer,
+} from './state/estudiante-state.reducer';
 
 @NgModule({
   declarations: [

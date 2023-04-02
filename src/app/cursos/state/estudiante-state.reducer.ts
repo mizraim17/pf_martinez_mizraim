@@ -1,5 +1,5 @@
 import { createFeature, createReducer, on } from '@ngrx/store';
-import { Estudiante } from '../models/estudiante';
+import { Estudiante } from '../../models/estudiante';
 import * as EstudianteStateActions from './estudiante-state.actions';
 import { estudianteCargado } from './estudiante-state.actions';
 

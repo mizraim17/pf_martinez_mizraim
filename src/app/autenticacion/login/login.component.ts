@@ -26,7 +26,7 @@ export class LoginComponent implements OnInit {
     private authStore: Store<AuthState>
   ) {
     let controles: any = {
-      usuario: new FormControl('estudiante@gmail.com', [
+      usuario: new FormControl('miz@gmail.com', [
         Validators.required,
         Validators.email,
       ]),

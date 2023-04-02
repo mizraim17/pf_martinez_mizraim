@@ -1,5 +1,6 @@
-<!-- <ng-container *ngIf="sesionActiva$|async as sesion"> -->
+<!-- <ng-container *ngIf="sesionActiva$|async     "> -->
 <ng-container>
+
 
 
   <mat-toolbar color="primary">
@@ -11,10 +12,10 @@
     <button mat-button (click)="irInicio()">
       Inicio
     </button>
-    <a mat-button routerLink="cursos/table">
+    <a *ngIf="(sesionActiva$|async  )==null  " mat-button routerLink="cursos/table">
       Tabla
     </a>
-    <a mat-button routerLink="cursos/list">
+    <a *ngIf="(sesionActiva$|async  )==null  " mat-button routerLink="cursos/list">
       Lista
     </a>
 

@@ -15,17 +15,17 @@ export const initialState: AuthState = {
   },
 };
 
-///funcion reductora
+///funcion reductora ligada al action
 
 export const authReducer = createReducer(
   initialState,
   on(AuthActions.cargarSesion, (state, { sesion }) => {
+    console.log('sesion', sesion);
+
     return {
       ...state,
-      sesion: {
-        sesionActiva: true,
-        usuarioActivo: sesion.usuarioActivo,
-      },
+      sesionActiva: true,
+      sesion,
     };
   })
 );

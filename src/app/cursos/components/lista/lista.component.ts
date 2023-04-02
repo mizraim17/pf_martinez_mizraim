@@ -8,15 +8,15 @@ import { CursosService } from '../../services/cursos.service';
 import { Sesion } from 'src/app/models/sesion';
 import { SesionService } from '../../../core/services/sesion.service';
 import { Store } from '@ngrx/store';
-import { EstudianteState } from '../../estudiante-state.reducer';
+import { EstudianteState } from '../../state/estudiante-state.reducer';
 import {
   selectCargandoEstudiantes,
   selectorEstudiantesCargados,
-} from '../../estudiante-state.selectors';
+} from '../../state/estudiante-state.selectors';
 import {
   cargarEstudianteState,
   estudianteCargado,
-} from '../../estudiante-state.actions';
+} from '../../state/estudiante-state.actions';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
