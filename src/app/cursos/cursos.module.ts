@@ -19,6 +19,8 @@ import { CargaEstudiantesComponent } from './components/carga-estudiantes/carga-
 
 // import { EstudianteStateEffects } from './estudiante-state.effects';
 import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
+import { EstudianteEffects } from './state/estudiante-state.effects';
 import {
   estudianteStateFeatureKey,
   reducer,
@@ -42,6 +44,8 @@ import {
     SharedModule,
     CursosRoutingModule,
     StoreModule.forFeature(estudianteStateFeatureKey, reducer),
+    EffectsModule.forFeature([EstudianteEffects])
+
   ],
   exports: [
     AgregarEstudianteComponent,

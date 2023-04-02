@@ -6,10 +6,17 @@ import { Sesion } from '../../models/sesion';
   providedIn: 'root',
 })
 export class SesionService {
+
   sesion$!: BehaviorSubject<Sesion>;
   constructor() {
+
     let sesion: Sesion = {
-      sesionActiva: false,
+      sesionActiva: true,
+      usuarioActivo: {
+      usuario:'miz',
+      contrasena: 'nada',
+      esAdmin: true
+      }
     };
 
     this.sesion$ = new BehaviorSubject<Sesion>(sesion);

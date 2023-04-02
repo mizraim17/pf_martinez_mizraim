@@ -2,7 +2,7 @@
 
   <div class="row mt-4">
 
-    <h1>Lista de Maestros</h1>
+    <h1>Lista de Maestros </h1>
 
     <mat-form-field class="example-full-width">
       <mat-label>Filtrar</mat-label>
@@ -29,13 +29,12 @@
           <p class="text-truncate">{{ estudiante.correo }}</p>
         </mat-card-content>
         <mat-card-actions align="end">
-          <ng-container *ngIf="sesion$|async as sesion">
-            <button *ngIf="sesion.usuarioActivo?.esAdmin" mat-raised-button color="primary"
-              (click)="editarDatos(estudiante)">
+          <ng-container>
+            <p> papa {{user$|async|json}}</p>
+            <button *ngIf="!(user$|async)?.esAdmin" mat-raised-button color="primary" (click)="editarDatos(estudiante)">
               Editar
             </button>
-            <button *ngIf="sesion.usuarioActivo?.esAdmin" mat-stroked-button color="warn"
-              (click)="eliminarDatos(estudiante.id)">
+            <button mat-stroked-button color="warn" (click)="eliminarDatos(estudiante.id)">
               Eliminar
             </button>
           </ng-container>

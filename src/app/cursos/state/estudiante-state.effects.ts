@@ -9,15 +9,17 @@ import { concatMap, map } from 'rxjs';
 import { Estudiante } from '../../models/estudiante';
 
 @Injectable()
-export class EstudianteEffect {
+export class EstudianteEffects{
+
   cargarEstudiantes$ = createEffect(() => {
     return this.action$.pipe(
-      ofType(cargarEstudianteState),
+      ofType(cargarEstudianteState), //llamando la otra action
       concatMap(() => {
-        return this.estudiantes.obtenerEstudiantesObservable().pipe(
-          map((c: Estudiante[]) =>
-            estudianteCargado({
-              estudiantes: c,
+        return this.estudiantes.obtenerEstudiantesObservable() //llamo al observale que peticiona
+          .pipe(
+          map((estudObtenidos: Estudiante[]) =>
+            estudianteCargado({ //llamando a la action
+              estudiantes: estudObtenidos   ,
             })
           )
         );

@@ -18,6 +18,8 @@ import {
   estudianteCargado,
 } from '../../state/estudiante-state.actions';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { selectUsuarioActivo, selectSesionActiva } from '../../../autenticacion/state/auth.selectors';
+import { Usuario } from '../../../models/usuario';
 
 @Component({
   selector: 'app-lista',
@@ -30,6 +32,7 @@ export class ListaComponent {
   suscripcion!: Subscription;
   sesion$!: Observable<Sesion>;
   cargando$!: Observable<boolean>;
+  user$! : Observable<Usuario | undefined>;
 
   constructor(
     public snackBar: MatSnackBar,
@@ -49,15 +52,14 @@ export class ListaComponent {
 
     this.store.dispatch(cargarEstudianteState());
 
-    this.estudianteService
-      .obtenerEstudiantesObservable()
-      .subscribe((estudiantes: Estudiante[]) => {
-        this.store.dispatch(estudianteCargado({ estudiantes: estudiantes }));
-      });
-
     this.estudiantes$ = this.store.select(selectorEstudiantesCargados);
 
-    this.sesion$ = this.sesion.obtenerSesison();
+    this.user$ = this.store.select(selectUsuarioActivo)
+
+    console.log('user$',this.user$);
+
+
+
   }
 
   editarDatos(estudiante: Estudiante) {
