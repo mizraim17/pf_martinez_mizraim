@@ -11,6 +11,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatCardModule } from '@angular/material/card';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatSidenavModule } from '@angular/material/sidenav';
 
 @NgModule({
   declarations: [],
@@ -26,6 +27,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     MatInputModule,
     MatSlideToggleModule,
     MatProgressSpinnerModule,
+    MatSidenavModule,
   ],
 
   exports: [
@@ -40,6 +42,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     MatInputModule,
     MatSlideToggleModule,
     MatProgressSpinnerModule,
+    MatSidenavModule,
   ],
 })
 export class MaterialModule {}

@@ -15,6 +15,7 @@ import { AgregarEstudianteComponent } from '../agregar-estudiante/agregar-estudi
 import { Observable, Subscription } from 'rxjs';
 import { CursosService } from '../../services/cursos.service';
 import { Store } from '@ngrx/store';
+import { eliminarEstudianteState } from '../../state/estudiante-state.actions';
 
 @Component({
   selector: 'app-tabla',
@@ -37,7 +38,8 @@ export class TablaComponent implements OnInit, OnDestroy {
 
   constructor(
     private dialog: MatDialog,
-    private estudianteService: CursosService
+    private estudianteService: CursosService,
+    private store: Store
   ) {}
 
   ngOnInit(): void {
@@ -48,12 +50,6 @@ export class TablaComponent implements OnInit, OnDestroy {
       .subscribe((estudiantes: Estudiante[]) => {
         this.dataSource.data = estudiantes;
       });
-
-    // let estudiantes$ = this.store
-    //   .select(selectorEstudiantesCargados)
-    //   .subscribe((estudiantes: Estudiante[]) => {
-    //     this.dataSource.data = estudiantes;
-    //   });
   }
 
   ngOnDestroy(): void {
@@ -71,19 +67,7 @@ export class TablaComponent implements OnInit, OnDestroy {
       .open(EditarEstudianteComponent, {
         data: estudiante,
       })
-      .afterClosed()
-      .subscribe((estudiante: Estudiante) => {
-        console.log('estudante lista', estudiante.nombre);
-
-        this.estudiantes$ =
-          this.estudianteService.obtenerEstudiantesObservable();
-
-        this.suscripcion = this.estudianteService
-          .obtenerEstudiantesObservable()
-          .subscribe((estudiantes: Estudiante[]) => {
-            this.dataSource.data = estudiantes;
-          });
-      });
+      .afterClosed();
   }
 
   addEstudiante() {
@@ -91,19 +75,6 @@ export class TablaComponent implements OnInit, OnDestroy {
   }
 
   eliminarDatos(i: string) {
-    this.estudianteService
-      .eliminarEstudiante(i)
-      .subscribe((estudiante: Estudiante) => {
-        alert(`${estudiante.nombre} eliminado`);
-
-        this.estudiantes$ =
-          this.estudianteService.obtenerEstudiantesObservable();
-
-        this.suscripcion = this.estudianteService
-          .obtenerEstudiantesObservable()
-          .subscribe((estudiantes: Estudiante[]) => {
-            this.dataSource.data = estudiantes;
-          });
-      });
+    this.store.dispatch(eliminarEstudianteState({ i }));
   }
 }

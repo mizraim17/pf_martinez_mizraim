@@ -21,7 +21,7 @@ export class CursosService {
     return this.http.post<Estudiante>(`${env.apiUrl}/estudiante`, estudiante);
   }
 
-  editarEstudiante(estudiante: any) {
+  editarEstudiante(estudiante: any): Observable<Estudiante> {
     // console.log('estu id', arr.id);
     console.log('estu array', estudiante);
 

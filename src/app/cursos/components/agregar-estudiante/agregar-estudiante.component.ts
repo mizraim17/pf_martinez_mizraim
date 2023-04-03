@@ -5,6 +5,9 @@ import { MatTableDataSource } from '@angular/material/table';
 import { Subscription } from 'rxjs';
 import { CursosService } from '../../services/cursos.service';
 import { Router } from '@angular/router';
+import { Store } from '@ngrx/store';
+import { EstudianteState } from '../../state/estudiante-state.reducer';
+import { agregarEstudianteState } from '../../state/estudiante-state.actions';
 
 @Component({
   selector: 'app-agregar-estudiante',
@@ -18,7 +21,8 @@ export class AgregarEstudianteComponent {
 
   constructor(
     private estudianteService: CursosService,
-    private router: Router
+    private router: Router,
+    private store: Store<EstudianteState>
   ) {}
 
   ngOnInit(): void {
@@ -55,11 +59,7 @@ export class AgregarEstudianteComponent {
 
   addEstudiante(form: any) {
     console.log('form', form);
-    this.estudianteService
-      .agregarEstudiante(form.value)
-      .subscribe((estudiante: Estudiante) => {
-        alert(`si agrego ${estudiante.nombre}`);
-        this.router.navigate(['cursos/list']);
-      });
+
+    this.store.dispatch(agregarEstudianteState({ estudiante: form.value }));
   }
 }

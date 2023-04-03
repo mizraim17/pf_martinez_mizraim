@@ -15,10 +15,14 @@ import {
 } from '../../state/estudiante-state.selectors';
 import {
   cargarEstudianteState,
+  eliminarEstudianteState,
   estudianteCargado,
 } from '../../state/estudiante-state.actions';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { selectUsuarioActivo, selectSesionActiva } from '../../../autenticacion/state/auth.selectors';
+import {
+  selectUsuarioActivo,
+  selectSesionActiva,
+} from '../../../autenticacion/state/auth.selectors';
 import { Usuario } from '../../../models/usuario';
 
 @Component({
@@ -32,7 +36,7 @@ export class ListaComponent {
   suscripcion!: Subscription;
   sesion$!: Observable<Sesion>;
   cargando$!: Observable<boolean>;
-  user$! : Observable<Usuario | undefined>;
+  user$!: Observable<Usuario | undefined>;
 
   constructor(
     public snackBar: MatSnackBar,
@@ -50,43 +54,22 @@ export class ListaComponent {
   ngOnInit() {
     this.cargando$ = this.store.select(selectCargandoEstudiantes);
 
-    this.store.dispatch(cargarEstudianteState());
-
     this.estudiantes$ = this.store.select(selectorEstudiantesCargados);
 
-    this.user$ = this.store.select(selectUsuarioActivo)
+    this.user$ = this.store.select(selectUsuarioActivo);
 
-    console.log('user$',this.user$);
-
-
-
+    console.log('user$', this.user$);
   }
 
   editarDatos(estudiante: Estudiante) {
-    console.log('estudiante antes lista', estudiante);
     this.dialog
       .open(EditarEstudianteComponent, {
         data: estudiante,
       })
-      .afterClosed()
-      .subscribe((estudiante: Estudiante) => {
-        console.log(' estudiante', estudiante);
-
-        alert('Editado');
-
-        this.estudiantes$ =
-          this.estudianteService.obtenerEstudiantesObservable();
-      });
+      .afterClosed();
   }
 
   eliminarDatos(i: string) {
-    this.estudianteService
-      .eliminarEstudiante(i)
-      .subscribe((estudiante: Estudiante) => {
-        alert(`${estudiante.nombre} eliminado`);
-
-        this.estudiantes$ =
-          this.estudianteService.obtenerEstudiantesObservable();
-      });
+    this.store.dispatch(eliminarEstudianteState({ i }));
   }
 }

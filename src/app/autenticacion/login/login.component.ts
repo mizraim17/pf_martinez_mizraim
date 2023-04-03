@@ -51,17 +51,6 @@ export class LoginComponent implements OnInit {
 
     console.log('tipo_usuario', tipo_usuario);
 
-    this.snackBar.open(
-      `Bienvenido  ${tipo_usuario ? 'Administrador' : 'Alumno'}`,
-      '',
-      {
-        duration: 4000,
-        panelClass: ['blue-snackbar'],
-        horizontalPosition: 'center',
-        verticalPosition: 'top',
-      }
-    );
-
     let usuario: Usuario = {
       usuario: this.formulario.value.usuario,
       contrasena: this.formulario.value.contrasena,
@@ -79,7 +68,7 @@ export class LoginComponent implements OnInit {
         this.router.navigate(['home']);
       });
 
-    this.loginService.login(usuario);
-    this.router.navigate(['/cursos/list']);
+    // this.loginService.login(usuario);
+    // this.router.navigate(['/cursos/list']);
   }
 }

@@ -9,6 +9,7 @@ import {
 } from './autenticacion/state/auth.selectors';
 import { Sesion } from './models/sesion';
 import { Usuario } from './models/usuario';
+import { EstudianteState } from './models/estudiante.state';
 
 @Component({
   selector: 'app-root',
@@ -19,12 +20,19 @@ export class AppComponent {
   title = '3pf_martinez_mizraim';
   sesionActiva$!: Observable<Boolean>;
   usuarioActivo$!: Observable<Usuario | undefined>;
+  user$!: Observable<Usuario | undefined>;
 
-  constructor(private router: Router, private authStore: Store<AuthState>) {}
+  constructor(
+    private router: Router,
+    private authStore: Store<AuthState>,
+    private store: Store<EstudianteState>
+  ) {}
 
   ngOnInit(): void {
     this.sesionActiva$ = this.authStore.select(selectSesionActiva);
     this.usuarioActivo$ = this.authStore.select(selectUsuarioActivo);
+
+    this.user$ = this.store.select(selectUsuarioActivo);
   }
 
   redigirInicio() {

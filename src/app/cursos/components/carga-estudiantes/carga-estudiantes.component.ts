@@ -3,6 +3,8 @@ import { Store } from '@ngrx/store';
 
 import { Estudiante } from 'src/app/models/estudiante';
 import { CursosService } from '../../services/cursos.service';
+import { cargarEstudianteState } from '../../state/estudiante-state.actions';
+import { EstudianteState } from '../../state/estudiante-state.reducer';
 
 @Component({
   selector: 'app-carga-estudiantes',
@@ -10,7 +12,9 @@ import { CursosService } from '../../services/cursos.service';
   styleUrls: ['./carga-estudiantes.component.scss'],
 })
 export class CargaEstudiantesComponent {
-  constructor(private estudianteService: CursosService) {}
+  constructor(private store: Store<EstudianteState>) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.store.dispatch(cargarEstudianteState());
+  }
 }

@@ -5,6 +5,8 @@ import { Estudiante } from '../../../models/estudiante';
 import { MatTableDataSource } from '@angular/material/table';
 import { Observable, Subscription } from 'rxjs';
 import { CursosService } from '../../services/cursos.service';
+import { Store } from '@ngrx/store';
+import { editarEstudianteState } from '../../state/estudiante-state.actions';
 
 @Component({
   selector: 'app-editar-estudiante',
@@ -20,6 +22,8 @@ export class EditarEstudianteComponent implements OnInit {
 
   constructor(
     private estudianteService: CursosService,
+    private dialogRef: MatDialogRef<EditarEstudianteComponent>,
+    private store: Store,
     @Inject(MAT_DIALOG_DATA) public data: Estudiante
   ) {
     let controles: any = {
@@ -49,10 +53,6 @@ export class EditarEstudianteComponent implements OnInit {
     console.log('this.estudiantes$', this.estudiantes$);
   }
 
-  ngOnDestroy(): void {
-    // this.suscripcion.unsubscribe();
-  }
-
   editEstudiante(estu: any) {
     console.log('name', this.formulario.value.nombre);
 
@@ -68,11 +68,8 @@ export class EditarEstudianteComponent implements OnInit {
       foto: this.formulario.value.foto,
     };
 
-    this.estudianteService
-      .editarEstudiante(estudiante)
-      .subscribe((estu: any) => {
-        console.log('esttu->,', estu);
-        // this.dialogRef.close(estu);
-      });
+    this.store.dispatch(editarEstudianteState({ estudiante }));
+
+    this.dialogRef.close(estu);
   }
 }

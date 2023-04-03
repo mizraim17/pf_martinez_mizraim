@@ -23,6 +23,10 @@ import { selectSesionState } from 'src/app/autenticacion/state/auth.selectors';
 export class SesionGuard implements CanActivate, CanActivateChild, CanLoad {
   constructor(private authStore: Store<AuthState>, private router: Router) {}
 
+  ngOnInit() {
+    let sesion = false;
+  }
+
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
@@ -33,11 +37,13 @@ export class SesionGuard implements CanActivate, CanActivateChild, CanLoad {
     | UrlTree {
     return this.authStore.select(selectSesionState).pipe(
       map((sesion: Sesion) => {
+        console.log('sesionActiva en auth', sesion.sesionActiva);
+
         if (sesion.sesionActiva) {
+          alert('sesion  guard true');
           return true;
         } else {
-          console.log('entro a sesion no activa');
-
+          alert('sesion  guard false');
           this.router.navigate(['auth/login']);
           return false;
         }

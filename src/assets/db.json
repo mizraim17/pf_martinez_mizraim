@@ -6,7 +6,7 @@
     "esAdmin": true
     },
 
-    {   "usuario": "estudiante@gmail.com",
+    {   "usuario": "stu@gmail.com",
     "contrasena": "usuario123",
     "esAdmin": false
     }

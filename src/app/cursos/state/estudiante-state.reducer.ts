@@ -1,7 +1,11 @@
 import { createFeature, createReducer, on } from '@ngrx/store';
 import { Estudiante } from '../../models/estudiante';
 import * as EstudianteStateActions from './estudiante-state.actions';
-import { estudianteCargado } from './estudiante-state.actions';
+import {
+  estudianteCargado,
+  agregarEstudianteState,
+  editarEstudianteState,
+} from './estudiante-state.actions';
 
 export const estudianteStateFeatureKey = 'estudianteState';
 
@@ -23,10 +27,22 @@ export const reducer = createReducer(
 
   on(EstudianteStateActions.estudianteCargado, (state, { estudiantes }) => {
     return { ...state, cargando: false, estudiantes };
+  }),
+
+  on(
+    EstudianteStateActions.agregarEstudianteState,
+    (state, { estudiante: Estudiante }) => {
+      return state;
+    }
+  ),
+  on(
+    EstudianteStateActions.editarEstudianteState,
+    (state, { estudiante: any }) => {
+      return state;
+    }
+  ),
+
+  on(EstudianteStateActions.eliminarEstudianteState, (state, { i: String }) => {
+    return state;
   })
 );
-
-export const estudianteStateFeature = createFeature({
-  name: estudianteStateFeatureKey,
-  reducer,
-});

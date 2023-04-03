@@ -30,11 +30,12 @@
         </mat-card-content>
         <mat-card-actions align="end">
           <ng-container>
-            <p> papa {{user$|async|json}}</p>
-            <button *ngIf="!(user$|async)?.esAdmin" mat-raised-button color="primary" (click)="editarDatos(estudiante)">
+            <!-- <p> {{user$|async|json}}</p> -->
+            <button *ngIf="(user$|async)?.esAdmin" mat-raised-button color="primary" (click)="editarDatos(estudiante)">
               Editar
             </button>
-            <button mat-stroked-button color="warn" (click)="eliminarDatos(estudiante.id)">
+            <button *ngIf="(user$|async)?.esAdmin" mat-stroked-button color="warn"
+              (click)="eliminarDatos(estudiante.id)">
               Eliminar
             </button>
           </ng-container>
