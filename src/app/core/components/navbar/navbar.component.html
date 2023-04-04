@@ -1,12 +1,16 @@
-<ng-container>
+<ng-container class="bg-warning">
   <h1>
     Navbar
   </h1>
   <div id="list-example" class="list-group">
     <a class="list-group-item list-group-item-action" href="#list-item-4">Menu</a>
     <a class="list-group-item list-group-item-action" href="#list-item-1">Inicio</a>
-    <a class="list-group-item list-group-item-action" href="#list-item-2">Tabla</a>
-    <a class="list-group-item list-group-item-action" href="#list-item-3">Lista</a>
 
+    <a mat-button routerLink="cursos/table">
+      Tabla
+    </a>
+    <a mat-button routerLink="cursos/list">
+      Lista
+    </a>
   </div>
 </ng-container>

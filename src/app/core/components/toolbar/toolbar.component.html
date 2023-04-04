@@ -6,8 +6,6 @@
 
 <ng-container>
 
-
-
   <mat-toolbar color="primary">
     <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
       <mat-icon>menu</mat-icon>
@@ -17,10 +15,10 @@
     <button mat-button (click)="irInicio()">
       Inicio
     </button>
-    <a *ngIf="(sesionActiva$|async  )==null  " mat-button routerLink="cursos/table">
+    <a mat-button routerLink="cursos/table">
       Tabla
     </a>
-    <a *ngIf="(sesionActiva$|async  )==null  " mat-button routerLink="cursos/list">
+    <a mat-button routerLink="cursos/list">
       Lista
     </a>
 
@@ -46,4 +44,4 @@
 
 </ng-container>
 
-<router-outlet></router-outlet>
+<!-- <router-outlet></router-outlet> -->

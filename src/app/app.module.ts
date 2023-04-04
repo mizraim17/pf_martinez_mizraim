@@ -12,9 +12,13 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { EffectsModule } from '@ngrx/effects';
+import {
+  authFeatureKey,
+  authReducer,
+} from './autenticacion/state/auth.reducer';
 
 @NgModule({
-  declarations: [AppComponent, NavbarComponent, ContentComponent],
+  declarations: [AppComponent, ContentComponent],
   imports: [
     AppRoutingModule,
     BrowserModule,
@@ -26,6 +30,7 @@ import { EffectsModule } from '@ngrx/effects';
     StoreDevtoolsModule,
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() }),
     EffectsModule.forRoot([]),
+    StoreModule.forFeature(authFeatureKey, authReducer),
   ],
   providers: [],
   bootstrap: [AppComponent],

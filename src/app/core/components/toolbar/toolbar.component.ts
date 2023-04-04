@@ -11,6 +11,10 @@ import {
   selectSesionActiva,
   selectUsuarioActivo,
 } from 'src/app/autenticacion/state/auth.selectors';
+import {
+  cargarSesion,
+  finalizarSesion,
+} from 'src/app/autenticacion/state/auth.actions';
 
 @Component({
   selector: 'app-toolbar',
@@ -20,7 +24,7 @@ import {
 export class ToolbarComponent implements OnInit {
   // sesion$!: Observable<Sesion>;
 
-  sesionActiva$!: Observable<Boolean>;
+  sesionActiva$!: Observable<Boolean> | undefined;
   usuarioActivo$!: Observable<Usuario | undefined>;
 
   constructor(
@@ -34,9 +38,7 @@ export class ToolbarComponent implements OnInit {
     // this.sesion$ = this.sesion.obtenerSesison();
 
     this.sesionActiva$ = this.authStore.select(selectSesionActiva);
-
     console.log(' this.sesionActiva$', this.sesionActiva$);
-
     this.usuarioActivo$ = this.authStore.select(selectUsuarioActivo);
   }
 
@@ -45,10 +47,14 @@ export class ToolbarComponent implements OnInit {
   }
 
   logOut() {
-    let sesionLogout: Sesion = {
-      sesionActiva: false,
-      usuarioActivo: undefined,
-    };
+    // let sesionLogout: Sesion = {
+    //   sesionActiva: false,
+    //   usuarioActivo: undefined,
+    // };
+
+    console.log('entro al logout');
+
+    this.authStore.dispatch(finalizarSesion());
 
     // this.sesion.logout(sesionLogout);
     this.router.navigate(['auth/login']);

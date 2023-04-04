@@ -10,6 +10,7 @@ import {
 import { Sesion } from './models/sesion';
 import { Usuario } from './models/usuario';
 import { EstudianteState } from './models/estudiante.state';
+import { cargarSesion } from './autenticacion/state/auth.actions';
 
 @Component({
   selector: 'app-root',
@@ -29,6 +30,13 @@ export class AppComponent {
   ) {}
 
   ngOnInit(): void {
+    this.authStore.dispatch(
+      cargarSesion({
+        sesion: {
+          sesionActiva: false,
+        },
+      })
+    );
     this.sesionActiva$ = this.authStore.select(selectSesionActiva);
     this.usuarioActivo$ = this.authStore.select(selectUsuarioActivo);
 
@@ -39,13 +47,15 @@ export class AppComponent {
     this.router.navigate(['inicio']);
   }
 
-  logout() {
-    let sesionLogout: Sesion = {
-      sesionActiva: false,
-      usuarioActivo: undefined,
-    };
+  // logout() {
+  //   // let sesionLogout: Sesion = {
+  //   //   sesionActiva: false,
+  //   //   usuarioActivo: undefined,
+  //   // };
 
-    // this.sesion.logout(sesionLogout);
-    this.router.navigate(['auth/login']);
-  }
+  //   console.log('entro al logout');
+
+  //   // this.sesion.logout(sesionLogout);
+  //   this.router.navigate(['auth/login']);
+  // }
 }

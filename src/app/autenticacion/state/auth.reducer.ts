@@ -20,13 +20,14 @@ export const initialState: AuthState = {
 export const authReducer = createReducer(
   initialState,
   on(AuthActions.cargarSesion, (state, { sesion }) => {
-    console.log('sesion', sesion);
+    console.log('sesion en crearRed', sesion);
 
-    return {
-      ...state,
-      sesionActiva: true,
-      sesion,
-    };
+    if (!sesion.sesionActiva) return { ...state, sesion: state.sesion };
+    else return { ...state, sesion: sesion };
+  }),
+
+  on(AuthActions.finalizarSesion, (state) => {
+    return { ...state, sesion: { sesionActiva: false } };
   })
 );
 
