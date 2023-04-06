@@ -11,30 +11,32 @@
   <body>
 
 
-    <h1>app component</h1>
 
-    <div class="row">
-      <app-toolbar> </app-toolbar>
+    <div class="container-fluid">
+
+      <div class="row">
+        <app-toolbar> </app-toolbar>
+      </div>
     </div>
 
-    <div class="row fondo-1">
+    <div class="container-fluid">
 
-      <div class="col-4">
-        <h1>contenedor navbar en app container</h1>
-        <app-navbar></app-navbar>
-      </div>
+      <div class="row fondo-1">
 
-      <div class="col-6">
-        <h1>
-          coo-6 contenedor principal de app component
-        </h1>
+        <div class="col-12 col-md-2">
 
-        <router-outlet></router-outlet>
+          <app-navbar></app-navbar>
+        </div>
+
+        <div class="col-12 col-md-10">
+
+
+          <router-outlet></router-outlet>
+        </div>
+
       </div>
 
     </div>
-
-
   </body>
 
 

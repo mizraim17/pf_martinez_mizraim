@@ -1,10 +1,6 @@
-<!-- <ng-container *ngIf="sesionActiva$|async     "> -->
+<ng-container *ngIf="sesionActiva$|async ">
 
-<h1>
-  tolbar
-</h1>
-
-<ng-container>
+  <!-- <ng-container> -->
 
   <mat-toolbar color="primary">
     <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
@@ -22,15 +18,16 @@
       Lista
     </a>
 
-    <!-- <a mat-button *ngIf="(usuarioActivo$ | async)?.esAdmin"> -->
-    <a mat-button>
+    <a mat-button *ngIf="(usuarioActivo$ | async)?.esAdmin">
+
+      Bienvenido Administrador {{(usuarioActivo$|async)?.usuario}}
       <mat-icon>
         supervisor_account
       </mat-icon>
     </a>
 
-    <!-- <a mat-button *ngIf="(usuarioActivo$ | async)?.esAdmin==false"> -->
-    <a mat-button>
+    <a mat-button *ngIf="(usuarioActivo$ | async)?.esAdmin==false">
+      Bienvenido Alumno
       <mat-icon>
         school
       </mat-icon>
@@ -43,5 +40,3 @@
   </mat-toolbar>
 
 </ng-container>
-
-<!-- <router-outlet></router-outlet> -->
