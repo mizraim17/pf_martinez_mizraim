@@ -1,19 +1,18 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Estudiante } from '../../../models/estudiante';
 import { MatTableDataSource } from '@angular/material/table';
-import { Observable, Subscription } from 'rxjs';
+import { Estudiante } from 'src/app/models/estudiante';
 import { CursosService } from '../../services/cursos.service';
 import { Store } from '@ngrx/store';
-import { editarEstudianteState } from '../../state/estudiante-state.actions';
+import { Observable, Subscription } from 'rxjs';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
-  selector: 'app-editar-estudiante',
-  templateUrl: './editar-estudiante.component.html',
-  styleUrls: ['./editar-estudiante.component.scss'],
+  selector: 'app-detalle-cursos',
+  templateUrl: './detalle-cursos.component.html',
+  styleUrls: ['./detalle-cursos.component.scss'],
 })
-export class EditarEstudianteComponent implements OnInit {
+export class DetalleCursosComponent implements OnInit {
   dataSource!: MatTableDataSource<Estudiante>;
   suscripcion!: Subscription;
   formulario: FormGroup;
@@ -22,11 +21,11 @@ export class EditarEstudianteComponent implements OnInit {
 
   constructor(
     private estudianteService: CursosService,
-    private dialogRef: MatDialogRef<EditarEstudianteComponent>,
+    private dialogRef: MatDialogRef<DetalleCursosComponent>,
     private store: Store,
     @Inject(MAT_DIALOG_DATA) public data: Estudiante
   ) {
-    console.log('data.nombre en editar', data.nombre);
+    console.log('data.nombre', data.nombre);
 
     let controles: any = {
       nombre: new FormControl(data.nombre, [Validators.required]),
@@ -46,32 +45,13 @@ export class EditarEstudianteComponent implements OnInit {
       id: new FormControl(data.id, []),
       foto: new FormControl(data.foto, [Validators.required]),
     };
+
+    console.log('controles', controles.fechaNacimiento.value);
+
     this.formulario = new FormGroup(controles);
   }
 
   ngOnInit(): void {
     this.estudiantes$ = this.estudianteService.obtenerEstudiantesObservable();
-
-    console.log('this.estudiantes$', this.estudiantes$);
-  }
-
-  editEstudiante(estu: any) {
-    console.log('name', this.formulario.value.nombre);
-
-    let estudiante: Estudiante = {
-      nombre: this.formulario.value.nombre,
-      apellido: this.formulario.value.apellido,
-      curso: this.formulario.value.curso,
-      correo: this.formulario.value.correo,
-      calificacion: this.formulario.value.calificacion,
-      fechaNacimiento: this.formulario.value.fechaNacimiento,
-      becado: this.formulario.value.becado,
-      id: this.formulario.value.id,
-      foto: this.formulario.value.foto,
-    };
-
-    this.store.dispatch(editarEstudianteState({ estudiante }));
-
-    this.dialogRef.close(estu);
   }
 }

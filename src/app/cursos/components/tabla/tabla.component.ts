@@ -1,16 +1,10 @@
-import {
-  Component,
-  ViewChild,
-  AfterViewInit,
-  OnInit,
-  OnDestroy,
-} from '@angular/core';
+import { Component, ViewChild, OnInit, OnDestroy } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { Estudiante } from '../../../models/estudiante';
 import { MatDialog } from '@angular/material/dialog';
 import { EditarEstudianteComponent } from '../editar-estudiante/editar-estudiante.component';
-
+import { DetalleCursosComponent } from '../detalle-cursos/detalle-cursos.component';
 import { AgregarEstudianteComponent } from '../agregar-estudiante/agregar-estudiante.component';
 import { Observable, Subscription } from 'rxjs';
 import { CursosService } from '../../services/cursos.service';
@@ -25,7 +19,6 @@ import { eliminarEstudianteState } from '../../state/estudiante-state.actions';
 export class TablaComponent implements OnInit, OnDestroy {
   dataSource!: MatTableDataSource<Estudiante>;
   suscripcion!: Subscription;
-
   estudiantes$!: Observable<Estudiante[]>;
 
   columnas: string[] = [
@@ -65,6 +58,14 @@ export class TablaComponent implements OnInit, OnDestroy {
   editarDatos(estudiante: Estudiante) {
     this.dialog
       .open(EditarEstudianteComponent, {
+        data: estudiante,
+      })
+      .afterClosed();
+  }
+
+  detallesEstudiante(estudiante: Estudiante) {
+    this.dialog
+      .open(DetalleCursosComponent, {
         data: estudiante,
       })
       .afterClosed();

@@ -25,6 +25,7 @@ import {
   estudianteStateFeatureKey,
   reducer,
 } from './state/estudiante-state.reducer';
+import { DetalleCursosComponent } from './components/detalle-cursos/detalle-cursos.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import {
     ValidaCalificacionPipe,
     FontSizeDirective,
     CargaEstudiantesComponent,
+    DetalleCursosComponent,
   ],
   imports: [
     CommonModule,
@@ -44,8 +46,7 @@ import {
     SharedModule,
     CursosRoutingModule,
     StoreModule.forFeature(estudianteStateFeatureKey, reducer),
-    EffectsModule.forFeature([EstudianteEffects])
-
+    EffectsModule.forFeature([EstudianteEffects]),
   ],
   exports: [
     AgregarEstudianteComponent,

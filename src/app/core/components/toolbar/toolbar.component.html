@@ -1,42 +1,53 @@
 <ng-container *ngIf="sesionActiva$|async ">
 
-  <!-- <ng-container> -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand">Control Escolar</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <button mat-button (click)="irInicio()">
+              Inicio
+            </button>
+          </li>
+          <li class="nav-item">
+            <a mat-button routerLink="cursos/table">
+              Tabla
+            </a>
+          </li>
 
-  <mat-toolbar color="primary">
-    <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
-      <mat-icon>menu</mat-icon>
-    </button>
-    <a mat-button routerLink="home" class="tit-toolbar">Control Escolar</a>
-    <span class="example-spacer"> </span>
-    <button mat-button (click)="irInicio()">
-      Inicio
-    </button>
-    <a mat-button routerLink="cursos/table">
-      Tabla
-    </a>
-    <a mat-button routerLink="cursos/list">
-      Lista
-    </a>
+          <li class="nav-item">
+            <a mat-button routerLink="cursos/list">
+              Lista
+            </a>
+          </li>
+        </ul>
+        <form class="d-flex" role="search">
+          <a mat-button *ngIf="(usuarioActivo$ | async)?.esAdmin">
 
-    <a mat-button *ngIf="(usuarioActivo$ | async)?.esAdmin">
+            Bienvenido Administrador {{(usuarioActivo$|async)?.usuario}}
+            <mat-icon>
+              supervisor_account
+            </mat-icon>
+          </a>
 
-      Bienvenido Administrador {{(usuarioActivo$|async)?.usuario}}
-      <mat-icon>
-        supervisor_account
-      </mat-icon>
-    </a>
+          <a mat-button *ngIf="(usuarioActivo$ | async)?.esAdmin==false">
+            Bienvenido Alumno
+            <mat-icon>
+              school
+            </mat-icon>
+          </a>
 
-    <a mat-button *ngIf="(usuarioActivo$ | async)?.esAdmin==false">
-      Bienvenido Alumno
-      <mat-icon>
-        school
-      </mat-icon>
-    </a>
-
-    <a mat-button (click)="logOut()">
-      <mat-icon>logout</mat-icon>
-    </a>
-
-  </mat-toolbar>
+          <a mat-button (click)="logOut()">
+            <mat-icon>logout</mat-icon>
+          </a>
+        </form>
+      </div>
+    </div>
+  </nav>
 
 </ng-container>

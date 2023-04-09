@@ -24,6 +24,7 @@ import {
   selectSesionActiva,
 } from '../../../autenticacion/state/auth.selectors';
 import { Usuario } from '../../../models/usuario';
+import { DetalleCursosComponent } from '../detalle-cursos/detalle-cursos.component';
 
 @Component({
   selector: 'app-lista',
@@ -71,5 +72,13 @@ export class ListaComponent {
 
   eliminarDatos(i: string) {
     this.store.dispatch(eliminarEstudianteState({ i }));
+  }
+
+  detallesEstudiante(estudiante: Estudiante) {
+    this.dialog
+      .open(DetalleCursosComponent, {
+        data: estudiante,
+      })
+      .afterClosed();
   }
 }

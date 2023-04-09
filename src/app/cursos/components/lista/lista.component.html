@@ -21,7 +21,7 @@
       <mat-card class="card-1 example-header-image">
         <mat-card-header>
           <mat-card-title>{{ estudiante | concatNombreApellido }}</mat-card-title>
-          <mat-card-subtitle>{{ estudiante.curso }}</mat-card-subtitle>
+          <mat-card-subtitle class="pb-2">{{ estudiante.curso }}</mat-card-subtitle>
         </mat-card-header>
         <img class="card-imagen" mat-card-image src="{{estudiante.foto}}" alt="">
         <mat-card-content>
@@ -30,7 +30,11 @@
         </mat-card-content>
         <mat-card-actions align="end">
           <ng-container>
-            <!-- <p> {{user$|async|json}}</p> -->
+
+            <button *ngIf="(user$|async)?.esAdmin" mat-raised-button color="accent"
+              (click)="detallesEstudiante(estudiante)">
+              Ver
+            </button>
             <button *ngIf="(user$|async)?.esAdmin" mat-raised-button color="primary" (click)="editarDatos(estudiante)">
               Editar
             </button>

@@ -1,0 +1,34 @@
+<div mat-dialog-title class="text-center">
+  Detalle de estudiante
+</div>
+
+<div mat-dialog-content>
+
+
+  <div class="row">
+
+    <div class="col-12 col-md-1 mt-4"></div>
+
+    <div class="col-12 col-sm-6 col-md-10 mt-4">
+      <mat-card class="card-1 example-header-image">
+        <mat-card-header>
+          <mat-card-title>{{ data | concatNombreApellido }}</mat-card-title>
+          <mat-card-subtitle>Curso: {{ data.curso }}</mat-card-subtitle>
+        </mat-card-header>
+        <img class="card-imagen" mat-card-image src="{{data.foto}}" alt="">
+        <mat-card-content>
+          <p class=" pt-2"> {{ data.becado?"Si tiene beca":"No tiene beca" }}</p>
+          <p class=" ">Calificación: {{ data.calificacion }}</p>
+          <p class=" ">Cumpleaños: {{ data.fechaNacimiento|date }}</p>
+          <p class="text-truncate">Correo: {{ data.correo }}</p>
+        </mat-card-content>
+
+      </mat-card>
+    </div>
+
+    <div class="col-12 col-md-1 mt-4"></div>
+  </div>
+
+
+
+</div>
