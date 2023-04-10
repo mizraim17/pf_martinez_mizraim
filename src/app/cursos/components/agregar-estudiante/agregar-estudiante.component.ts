@@ -58,8 +58,6 @@ export class AgregarEstudianteComponent {
   }
 
   addEstudiante(form: any) {
-    console.log('form', form);
-
     this.store.dispatch(agregarEstudianteState({ estudiante: form.value }));
   }
 }

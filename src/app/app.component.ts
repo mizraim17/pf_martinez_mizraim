@@ -46,16 +46,4 @@ export class AppComponent {
   redigirInicio() {
     this.router.navigate(['inicio']);
   }
-
-  // logout() {
-  //   // let sesionLogout: Sesion = {
-  //   //   sesionActiva: false,
-  //   //   usuarioActivo: undefined,
-  //   // };
-
-  //   console.log('entro al logout');
-
-  //   // this.sesion.logout(sesionLogout);
-  //   this.router.navigate(['auth/login']);
-  // }
 }

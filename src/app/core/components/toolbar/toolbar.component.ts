@@ -40,7 +40,6 @@ export class ToolbarComponent implements OnInit {
     this.sesionActiva$ = this.authStore.select(selectSesionActiva);
 
     this.usuarioActivo$ = this.authStore.select(selectUsuarioActivo);
-    console.log(' this.sesionActiva$', this.usuarioActivo$);
   }
 
   irInicio() {
@@ -48,8 +47,6 @@ export class ToolbarComponent implements OnInit {
   }
 
   logOut() {
-    console.log('entro al logout');
-
     this.authStore.dispatch(finalizarSesion());
 
     this.router.navigate(['auth/login']);

@@ -26,8 +26,6 @@ export class EditarEstudianteComponent implements OnInit {
     private store: Store,
     @Inject(MAT_DIALOG_DATA) public data: Estudiante
   ) {
-    console.log('data.nombre en editar', data.nombre);
-
     let controles: any = {
       nombre: new FormControl(data.nombre, [Validators.required]),
       apellido: new FormControl(data.apellido, [Validators.required]),
@@ -51,13 +49,9 @@ export class EditarEstudianteComponent implements OnInit {
 
   ngOnInit(): void {
     this.estudiantes$ = this.estudianteService.obtenerEstudiantesObservable();
-
-    console.log('this.estudiantes$', this.estudiantes$);
   }
 
   editEstudiante(estu: any) {
-    console.log('name', this.formulario.value.nombre);
-
     let estudiante: Estudiante = {
       nombre: this.formulario.value.nombre,
       apellido: this.formulario.value.apellido,

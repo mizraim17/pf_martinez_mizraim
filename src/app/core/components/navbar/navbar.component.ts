@@ -22,7 +22,8 @@ export class NavbarComponent {
 
   ngOnInit() {
     this.sesionActiva$ = this.authStore.select(selectSesionActiva);
-    console.log(' this.sesionActiva$', this.sesionActiva$);
+
+ 
     this.usuarioActivo$ = this.authStore.select(selectUsuarioActivo);
   }
 

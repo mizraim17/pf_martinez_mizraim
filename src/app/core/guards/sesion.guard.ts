@@ -37,8 +37,6 @@ export class SesionGuard implements CanActivate, CanActivateChild, CanLoad {
     | UrlTree {
     return this.authStore.select(selectSesionState).pipe(
       map((sesion: Sesion) => {
-        console.log('sesionActiva en auth', sesion);
-
         if (sesion.sesionActiva) {
           return true;
         } else {

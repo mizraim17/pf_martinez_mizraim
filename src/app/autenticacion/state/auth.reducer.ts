@@ -20,8 +20,6 @@ export const initialState: AuthState = {
 export const authReducer = createReducer(
   initialState,
   on(AuthActions.cargarSesion, (state, { sesion }) => {
-    console.log('sesion en crearRed', sesion);
-
     if (!sesion.sesionActiva) return { ...state, sesion: state.sesion };
     else return { ...state, sesion: sesion };
   }),
@@ -30,8 +28,3 @@ export const authReducer = createReducer(
     return { ...state, sesion: { sesionActiva: false } };
   })
 );
-
-// export const authFeature = createFeature({
-//   name: authFeatureKey,
-//   reducer,
-// });

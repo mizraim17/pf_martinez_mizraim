@@ -44,8 +44,6 @@ export class LoginService {
             }
           );
 
-          console.log('sesion logeo', sesion.usuarioActivo?.esAdmin);
-
           return sesion;
         } else {
           const sesion: Sesion = {
@@ -70,5 +68,4 @@ export class LoginService {
       })
     );
   }
-
 }

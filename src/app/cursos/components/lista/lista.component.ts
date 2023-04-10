@@ -58,8 +58,6 @@ export class ListaComponent {
     this.estudiantes$ = this.store.select(selectorEstudiantesCargados);
 
     this.user$ = this.store.select(selectUsuarioActivo);
-
-    console.log('user$', this.user$);
   }
 
   editarDatos(estudiante: Estudiante) {

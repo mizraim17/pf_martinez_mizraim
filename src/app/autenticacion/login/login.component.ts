@@ -49,8 +49,6 @@ export class LoginComponent implements OnInit {
   login() {
     let tipo_usuario = this.formulario.controls['esAdmin'].value;
 
-    console.log('tipo_usuario', tipo_usuario);
-
     let usuario: Usuario = {
       usuario: this.formulario.value.usuario,
       contrasena: this.formulario.value.contrasena,

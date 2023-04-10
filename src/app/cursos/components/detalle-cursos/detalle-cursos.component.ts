@@ -25,8 +25,6 @@ export class DetalleCursosComponent implements OnInit {
     private store: Store,
     @Inject(MAT_DIALOG_DATA) public data: Estudiante
   ) {
-    console.log('data.nombre', data.nombre);
-
     let controles: any = {
       nombre: new FormControl(data.nombre, [Validators.required]),
       apellido: new FormControl(data.apellido, [Validators.required]),
@@ -45,8 +43,6 @@ export class DetalleCursosComponent implements OnInit {
       id: new FormControl(data.id, []),
       foto: new FormControl(data.foto, [Validators.required]),
     };
-
-    console.log('controles', controles.fechaNacimiento.value);
 
     this.formulario = new FormGroup(controles);
   }

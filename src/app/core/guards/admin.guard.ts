@@ -34,8 +34,6 @@ export class AdminGuard implements CanActivate {
     | UrlTree {
     return this.authStore.select(selectSesionState).pipe(
       map((sesion: Sesion) => {
-        console.log('es sesion.usuarioActivo', sesion.usuarioActivo);
-
         if (sesion.usuarioActivo?.esAdmin) {
           return true;
         } else {

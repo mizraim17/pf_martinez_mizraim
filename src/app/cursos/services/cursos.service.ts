@@ -16,15 +16,10 @@ export class CursosService {
   }
 
   agregarEstudiante(estudiante: Estudiante): Observable<Estudiante> {
-    console.log('add stud', estudiante);
-
     return this.http.post<Estudiante>(`${env.apiUrl}/estudiante`, estudiante);
   }
 
   editarEstudiante(estudiante: any): Observable<Estudiante> {
-    // console.log('estu id', arr.id);
-    console.log('estu array', estudiante);
-
     return this.http.put<Estudiante>(
       `${env.apiUrl}/estudiante/${estudiante.id}`,
       estudiante

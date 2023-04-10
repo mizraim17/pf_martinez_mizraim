@@ -6,24 +6,21 @@ import { Sesion } from '../../models/sesion';
   providedIn: 'root',
 })
 export class SesionService {
-
   sesion$!: BehaviorSubject<Sesion>;
   constructor() {
-
     let sesion: Sesion = {
       sesionActiva: true,
       usuarioActivo: {
-      usuario:'miz',
-      contrasena: 'nada',
-      esAdmin: true
-      }
+        usuario: 'miz',
+        contrasena: 'nada',
+        esAdmin: true,
+      },
     };
 
     this.sesion$ = new BehaviorSubject<Sesion>(sesion);
   }
 
   crearSesion(sesion: Sesion) {
-    console.log('creando sesion con objeto', sesion);
     this.sesion$.next(sesion);
   }
 
