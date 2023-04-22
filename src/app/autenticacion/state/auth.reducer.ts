@@ -6,6 +6,7 @@ export const authFeatureKey = 'auth';
 
 export interface AuthState {
   sesion: Sesion;
+  componente: any;
 }
 
 //inicializando
@@ -13,6 +14,7 @@ export const initialState: AuthState = {
   sesion: {
     sesionActiva: false,
   },
+  componente: 'test',
 };
 
 ///funcion reductora ligada al action
@@ -26,5 +28,9 @@ export const authReducer = createReducer(
 
   on(AuthActions.finalizarSesion, (state) => {
     return { ...state, sesion: { sesionActiva: false } };
+  }),
+
+  on(AuthActions.componenteActivo, (state) => {
+    return { ...state, componente: '' };
   })
 );

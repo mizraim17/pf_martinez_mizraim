@@ -46,7 +46,7 @@ export class TablaComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    // this.suscripcion.unsubscribe();
+    this.suscripcion.unsubscribe();
   }
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;

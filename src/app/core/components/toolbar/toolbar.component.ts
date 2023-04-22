@@ -22,23 +22,13 @@ import {
   styleUrls: ['./toolbar.component.scss'],
 })
 export class ToolbarComponent implements OnInit {
-  // sesion$!: Observable<Sesion>;
-
   sesionActiva$!: Observable<Boolean> | undefined;
   usuarioActivo$!: Observable<Usuario | undefined>;
 
-  constructor(
-    // private router: Router, private sesion: SesionService
-
-    private router: Router,
-    private authStore: Store<AuthState>
-  ) {}
+  constructor(private router: Router, private authStore: Store<AuthState>) {}
 
   ngOnInit(): void {
-    // this.sesion$ = this.sesion.obtenerSesison();
-
     this.sesionActiva$ = this.authStore.select(selectSesionActiva);
-
     this.usuarioActivo$ = this.authStore.select(selectUsuarioActivo);
   }
 

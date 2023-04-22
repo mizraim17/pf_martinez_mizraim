@@ -19,3 +19,8 @@ export const selectUsuarioActivo = createSelector(
   selectAuthState,
   (state) => state.sesion.usuarioActivo
 );
+
+// export const selectComponenteActivo = createSelector(
+//   selectAuthState,
+//   (state) => state.
+// );

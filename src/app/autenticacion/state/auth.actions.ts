@@ -7,3 +7,8 @@ export const cargarSesion = createAction(
 );
 
 export const finalizarSesion = createAction('[Auth]  Finalizar sesion');
+
+export const componenteActivo = createAction(
+  '[Auth]  Componente Activo',
+  props<{ componente: any }>()
+);

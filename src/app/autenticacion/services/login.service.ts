@@ -25,11 +25,17 @@ export class LoginService {
             u.usuario === usuario.usuario && u.contrasena === usuario.contrasena
         );
 
+        console.log('usuarioValidado', usuarioValidado);
+        console.log('usuarios', usuarios);
+        console.log('usuario=', usuario);
+
         if (usuarioValidado) {
           const sesion: Sesion = {
             sesionActiva: true,
             usuarioActivo: usuarioValidado,
           };
+
+          console.log('entro al if ');
 
           let tipo_usuario = sesion.usuarioActivo?.esAdmin;
 
@@ -51,6 +57,8 @@ export class LoginService {
           };
 
           let tipo_usuario = sesion.usuarioActivo?.esAdmin;
+
+          console.log('entro else ');
 
           this.snackBar.open(
             `Bienvenido  ${tipo_usuario ? 'Administrador' : 'Alumno'}`,

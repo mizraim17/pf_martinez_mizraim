@@ -17,7 +17,6 @@ import { SharedModule } from '../shared/shared.module';
 import { FontSizeDirective } from '../directives/font-size.directive';
 import { CargaEstudiantesComponent } from './components/carga-estudiantes/carga-estudiantes.component';
 
-// import { EstudianteStateEffects } from './estudiante-state.effects';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { EstudianteEffects } from './state/estudiante-state.effects';

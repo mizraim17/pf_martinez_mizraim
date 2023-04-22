@@ -32,7 +32,6 @@ import { DetalleCursosComponent } from '../detalle-cursos/detalle-cursos.compone
   styleUrls: ['./lista.component.scss'],
 })
 export class ListaComponent {
-  estudiantes!: Estudiante;
   estudiantes$!: Observable<Estudiante[]>;
   suscripcion!: Subscription;
   sesion$!: Observable<Sesion>;

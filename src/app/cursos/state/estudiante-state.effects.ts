@@ -97,7 +97,6 @@ export class EstudianteEffects {
     );
   });
 
-  // editarEstudiante$ = createEffect( );
   constructor(
     private estudiantes: CursosService,
     private action$: Actions,

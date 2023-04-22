@@ -47,8 +47,6 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
-    let tipo_usuario = this.formulario.controls['esAdmin'].value;
-
     let usuario: Usuario = {
       usuario: this.formulario.value.usuario,
       contrasena: this.formulario.value.contrasena,
@@ -65,8 +63,5 @@ export class LoginComponent implements OnInit {
         );
         this.router.navigate(['home']);
       });
-
-    // this.loginService.login(usuario);
-    // this.router.navigate(['/cursos/list']);
   }
 }
